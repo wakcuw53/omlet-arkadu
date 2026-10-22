@@ -10,6 +10,9 @@ permissions:
 jobs:
   apk:
     runs-on: ubuntu-latest
+    env:
+      ANDROID_HOME: /usr/local/lib/android/sdk
+      ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
     steps:
       - name: Get project
         uses: actions/checkout@v4
@@ -21,7 +24,7 @@ jobs:
           distribution: temurin
           java-version: '17'
       - name: Install Android 35
-        run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
+        run: /usr/local/lib/android/sdk/cmdline-tools/16.0/bin/sdkmanager "platforms;android-35" "build-tools;35.0.0"
       - name: Gradle 8.9
         uses: gradle/actions/setup-gradle@v4
         with:
